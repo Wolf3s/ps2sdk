@@ -79,9 +79,9 @@ typedef struct _libcglue_fdman_fd_info_
 	_libcglue_fdman_fd_ops_t *ops;
 } _libcglue_fdman_fd_info_t;
 
-typedef int (*_libcglue_fdman_open_cb_t)(_libcglue_fdman_fd_info_t *info, const char *buf, int flags, mode_t mode);
+typedef int (*_libcglue_fdman_open_cb_t)(_libcglue_fdman_fd_info_t *info, const char *path, int flags, mode_t mode);
 typedef int (*_libcglue_fdman_remove_cb_t)(const char *path);
-typedef int (*_libcglue_fdman_rename_cb_t)(const char *old, const char *new_);
+typedef int (*_libcglue_fdman_rename_cb_t)(const char *oldpath, const char *newpath);
 typedef int (*_libcglue_fdman_mkdir_cb_t)(const char *path, int mode);
 typedef int (*_libcglue_fdman_rmdir_cb_t)(const char *path);
 typedef int (*_libcglue_fdman_stat_cb_t)(const char *path, struct stat *buf);
