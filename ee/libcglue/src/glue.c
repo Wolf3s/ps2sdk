@@ -120,7 +120,7 @@ void compile_time_check() {
 #endif
 
 #ifdef F__open
-int _open(const char *buf, int flags, ...) {
+int _open(const char *path, int flags, ...) {
 	int iop_fd, fd;
 	int mode;
 	_libcglue_fdman_fd_info_t *info;
@@ -131,7 +131,7 @@ int _open(const char *buf, int flags, ...) {
 	mode = va_arg(alist, int);	// Retrieve the mode argument, regardless of whether it is expected or not.
 	va_end(alist);
 
-	if(__path_absolute(buf, t_fname, MAXNAMLEN) < 0) {
+	if(__path_absolute(buf, path, MAXNAMLEN) < 0) {
 		errno = ENAMETOOLONG;
 		return -1;
 	}
@@ -477,7 +477,9 @@ int rmdir(const char *path) {
 #endif
 
 #ifdef F__link
-int _link(const char *old, const char *new) {
+int _link(const char *oldpath, const char *newpath) {
+    (void)oldpath;
+    (void)newpath;
 	errno = ENOSYS;
 	return -1; /* not supported */
 }
@@ -502,16 +504,16 @@ int _unlink(const char *path) {
 #endif
 
 #ifdef F__rename
-int _rename(const char *old, const char *new) {
+int _rename(const char *oldpath, const char *newpath) {
 	char oldname[MAXNAMLEN + 1];
 	char newname[MAXNAMLEN + 1];
 
-	if(__path_absolute(old, oldname, MAXNAMLEN) < 0) {
+	if(__path_absolute(oldpath, oldname, MAXNAMLEN) < 0) {
 		errno = ENAMETOOLONG;
 		return -1;
 	}
 
-	if(__path_absolute(new, newname, MAXNAMLEN) < 0) {
+	if(__path_absolute(newpath, newname, MAXNAMLEN) < 0) {
 		errno = ENAMETOOLONG;
 		return -1;
 	}
@@ -763,6 +765,8 @@ ssize_t readlink(const char *path, char *buf, size_t bufsiz)
 #ifdef F_utime
 int utime(const char *pathname, const struct utimbuf *times)
 {
+    (void)pathname;
+    (void)times;
 	// TODO: implement in terms of chstat
 	errno = ENOSYS;
 	return -1; /* not supported */
@@ -772,6 +776,9 @@ int utime(const char *pathname, const struct utimbuf *times)
 #ifdef F_fchown
 int fchown(int fd, uid_t owner, gid_t group)
 {
+    (void)fd;
+    (void)owner;
+    (void)group;
 	errno = ENOSYS;
 	return -1; /* not supported */
 }
@@ -814,6 +821,7 @@ int _getentropy(void *buf, size_t buflen)
 #ifdef F__isatty
 int _isatty(int fd)
 {
+    (void)fd;
 	errno = ENOSYS;
 	return -1; /* not supported */
 }
@@ -822,6 +830,8 @@ int _isatty(int fd)
 #ifdef F_chmod
 int chmod(const char *pathname, mode_t mode)
 {
+    (void)pathname;
+    (void)mode;
 	errno = ENOSYS;
 	return -1; /* not supported */
 }
@@ -830,6 +840,8 @@ int chmod(const char *pathname, mode_t mode)
 #ifdef F_fchmod
 int fchmod(int fd, mode_t mode)
 {
+    (void)fd;
+    (void)mode;
 	errno = ENOSYS;
 	return -1; /* not supported */
 }
@@ -838,6 +850,8 @@ int fchmod(int fd, mode_t mode)
 #ifdef F_fchmodat
 int fchmodat(int fd, const char *path, mode_t mode, int flag)
 {
+    (void)fd;
+    (void)flag;
 	return chmod(path, mode);
 }
 #endif
@@ -845,6 +859,8 @@ int fchmodat(int fd, const char *path, mode_t mode, int flag)
 #ifdef F_pathconf
 long int pathconf(const char *path, int name)
 {
+    (void)path;
+    (void)name;
 	errno = ENOSYS;
 	return -1; /* not supported */
 }
@@ -852,6 +868,7 @@ long int pathconf(const char *path, int name)
 
 #ifdef F_fsync
 int fsync(int fd) {
+    (void)fd;
 	// TODO: implement in terms of sync
 	return 0;
 }
@@ -871,6 +888,7 @@ uid_t geteuid(void) {
 
 #ifdef F_getpwuid
 struct passwd *getpwuid(uid_t uid) {
+    (void)uid;
 	/* There's no support for users */
 	return &__dummy_passwd;
 }
@@ -878,6 +896,7 @@ struct passwd *getpwuid(uid_t uid) {
 
 #ifdef F_getpwnam
 struct passwd *getpwnam(const char *name) {
+    (void)name;
 	/* There's no support for users */
 	return &__dummy_passwd;
 }
@@ -885,6 +904,7 @@ struct passwd *getpwnam(const char *name) {
 
 #ifdef F_libcglue_get_fd_info
 _libcglue_fdman_fd_info_t *libcglue_get_fd_info(int fd) {
+    (void)fd;
 	if (!__IS_FD_VALID(fd)) {
 		errno = EBADF;
 		return NULL;
