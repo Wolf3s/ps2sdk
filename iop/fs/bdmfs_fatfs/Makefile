@@ -11,8 +11,6 @@ FATFS := $(PS2SDKSRC)/external_deps/fatfs
 DEBUG ?= 0
 DEBUG_EXTREME ?= 0
 
-IOP_CFLAGS += -D__PS2SDK_IOP__ 
-
 ifeq ($(DEBUG),1)
 	IOP_CFLAGS += -DDEBUG
 endif
