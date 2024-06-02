@@ -17,7 +17,7 @@ endif
 ifeq ($(ONLY_HOST_TOOLS), 1)
   SUBDIRS = tools
 else
-  SUBDIRS = tools common iop ee samples
+  SUBDIRS = external_deps tools common iop ee samples
 endif
 
 all: build
@@ -106,14 +106,14 @@ env_release_check:
 download_dependencies:
 	@if test $(ONLY_HOST_TOOLS) -eq 0 ; \
 	then \
-	  $(MAKEREC) $(PS2SDKSRC)/common/external_deps all ; \
+	  $(MAKEREC) $(PS2SDKSRC)/external_deps all ; \
 	fi
 	
 # Don't do anything if ONLY_HOST_TOOLS is set.
 clean_dependencies:
 	@if test $(ONLY_HOST_TOOLS) -eq 0 ; \
 	then \
-	  $(MAKEREC) $(PS2SDKSRC)/common/external_deps clean ; \
+	  $(MAKEREC) $(PS2SDKSRC)/external_deps clean ; \
 	fi
 
 docs:

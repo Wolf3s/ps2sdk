@@ -11,7 +11,7 @@ PS2IP_DHCP = 1
 PS2IP_DNS = 1
 
 # Change this to point to the version of LWIP this is being compiled with.
-LWIP = $(PS2SDKSRC)/common/external_deps/lwip
+LWIP = $(PS2SDKSRC)/external_deps/lwip
 PS2IP_BASE = $(PS2SDKSRC)/iop/tcpip/tcpip-base
 
 IOP_BIN ?= ps2ip.irx
@@ -54,7 +54,7 @@ include $(PS2SDKSRC)/iop/Rules.make
 include $(PS2SDKSRC)/iop/Rules.release
 
 $(LWIP):
-	$(MAKEREC) $(PS2SDKSRC)/common/external_deps all
+	$(MAKEREC) $(PS2SDKSRC)/external_deps all
 
 $(IOP_OBJS_DIR)ps2ip.o $(IOP_OBJS_DIR)sys_arch.o: $(LWIP)
 

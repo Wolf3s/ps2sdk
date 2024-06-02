@@ -15,7 +15,7 @@ fi
 
 ## Download LWIP
 LWIP_REPO_URL="https://github.com/ps2dev/lwip.git"
-LWIP_REPO_FOLDER="common/external_deps/lwip"
+LWIP_REPO_FOLDER="external_deps/lwip"
 LWIP_BRANCH_NAME="ps2-v2.0.3"
 if test ! -d "$LWIP_REPO_FOLDER"; then
   git clone --depth 1 -b $LWIP_BRANCH_NAME $LWIP_REPO_URL "$LWIP_REPO_FOLDER"_inprogress || exit 1
@@ -26,7 +26,7 @@ fi
 
 ## Download libsmb2
 FATFS_REPO_URL="https://github.com/Wolf3s/FatFs-ps2.git"
-FATFS_REPO_FOLDER="common/external_deps/fatfs"
+FATFS_REPO_FOLDER="external_deps/fatfs"
 FATFS_BRANCH_NAME="IOP-Changes"
 if test ! -d "$FATFS_REPO_FOLDER"; then
   git clone --depth 1 -b $FATFS_BRANCH_NAME $FATFS_REPO_URL "$FATFS_REPO_FOLDER"_inprogress || exit 1

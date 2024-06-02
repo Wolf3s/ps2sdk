@@ -11,7 +11,7 @@ PS2IP_DHCP = 1
 PS2IP_DNS = 1
 
 # Change this to point to the version of LWIP this is being compiled with.
-LWIP = $(PS2SDKSRC)/common/external_deps/lwip
+LWIP = $(PS2SDKSRC)/external_deps/lwip
 
 EE_LIB_ALTNAMES ?= libsocket.a
 
@@ -55,7 +55,7 @@ include $(PS2SDKSRC)/ee/Rules.make
 include $(PS2SDKSRC)/ee/Rules.release
 
 $(LWIP):
-	$(MAKEREC) $(PS2SDKSRC)/common/external_deps all
+	$(MAKEREC) $(PS2SDKSRC)/external_deps all
 
 $(EE_OBJS_DIR)ps2ip.o $(EE_OBJS_DIR)ps2ip_shims.o $(EE_OBJS_DIR)sys_arch.o: $(LWIP)
 

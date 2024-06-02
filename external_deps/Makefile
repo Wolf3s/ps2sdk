@@ -1,6 +1,6 @@
 
-LWIP := $(PS2SDKSRC)/common/external_deps/lwip
-FATFS := $(PS2SDKSRC)/common/external_deps/fatfs
+LWIP := $(PS2SDKSRC)/external_deps/lwip
+FATFS := $(PS2SDKSRC)/external_deps/fatfs
 
 all: 
 	cd $(PS2SDKSRC) && ./download_dependencies.sh

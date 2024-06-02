@@ -6,7 +6,7 @@
 # Licenced under Academic Free License version 2.0
 # Review ps2sdk README & LICENSE files for further details.
 
-FATFS := $(PS2SDKSRC)/common/external_deps/fatfs
+FATFS := $(PS2SDKSRC)/external_deps/fatfs
 
 DEBUG ?= 0
 DEBUG_EXTREME ?= 0
@@ -21,7 +21,7 @@ ifeq ($(DEBUG_EXTREME),1)
 	IOP_CFLAGS += -DDEBUG_EXTREME
 endif
 
-IOP_INCS += -I$(PS2SDKSRC)/iop/fs/bdm/include -I$(PS2SDKSRC)/common/external_deps/fatfs/source/include
+IOP_INCS += -I$(PS2SDKSRC)/iop/fs/bdm/include -I$(PS2SDKSRC)/external_deps/fatfs/source/include
 
 FATFS_OBJS = diskio.o ff.o ffsystem.o ffunicode.o 
 
@@ -35,7 +35,7 @@ include $(PS2SDKSRC)/iop/Rules.make
 include $(PS2SDKSRC)/iop/Rules.release
 
 $(FATFS):
-	$(MAKEREC) $(PS2SDKSRC)/common/external_deps all
+	$(MAKEREC) $(PS2SDKSRC)/external_deps all
 
 vpath %.c $(FATFS)/source/
 
