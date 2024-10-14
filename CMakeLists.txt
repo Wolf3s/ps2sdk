@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 project(ps2sdk)
 include(ExternalProject)
 
+execute_process(COMMAND ./download_dependencies.sh)
+
 ExternalProject_Add(tools
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/tools
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/tools

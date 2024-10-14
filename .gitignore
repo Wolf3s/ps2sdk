@@ -33,6 +33,7 @@
 !.mailmap
 
 #
+build/
 obj/
 ee_obj/
 iop_obj/
